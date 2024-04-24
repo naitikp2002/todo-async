@@ -1,0 +1,6 @@
+{
+    "todos": [
+      { "id": "1", "task": "vegitables", "isCompleted": true },
+      { "id": "2", "task": "groceries", "isCompleted": true }
+    ]
+  }
