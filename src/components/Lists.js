@@ -1,7 +1,7 @@
 import React from "react";
 import ListItem from "./ListItem";
 
-const Lists = () => {
+const Lists = ({todos,setTodos}) => {
   return (
     <div
       style={{
@@ -19,7 +19,7 @@ const Lists = () => {
           width: "100%",
         }}
       >
-        <ListItem/>
+        <ListItem todos={todos} setTodos={setTodos}/>
       </div>
     </div>
   );
