@@ -2,11 +2,15 @@ import { Button } from "react-bootstrap";
 import React from "react";
 import { ImCross } from "react-icons/im";
 import { FaCheck } from "react-icons/fa";
+import ListGroup from 'react-bootstrap/ListGroup';
 const ListItem = ({ todos, setTodos }) => {
+    const handleDelete = (id) => {
+      setTodos(todos.filter((todo) => todo.id!== id));
+    };
   return (
-    <ul style={{ width: "500px" }} className="list-group">
-      {todos.slice().reverse().map((todo) => (
-        <li className="list-group-item d-flex justify-content-between align-items-center">
+    <ListGroup as="ol" numbered style={{ minWidth: "500px" }} className="list-group">
+      {todos.map((todo) => (
+        <ListGroup.Item as="li" >
           {todo.task}
           <div
             style={{
@@ -15,18 +19,19 @@ const ListItem = ({ todos, setTodos }) => {
               alignItems: "center",
               float: "right",
               gap: "5px",
+              marginLeft: "10px"
             }}
           >
-            <Button variant="danger">
+            <Button variant="danger" onClick={(e)=>handleDelete(todo.id)}>
               <ImCross />
             </Button>
             <Button variant="success">
               <FaCheck />
             </Button>
           </div>
-        </li>
+        </ListGroup.Item>
       ))}
-    </ul>
+    </ListGroup>
   );
 };
 
