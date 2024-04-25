@@ -3,16 +3,14 @@ import Form from "react-bootstrap/Form";
 
 const InputForm = () => {
   return (
-    <div
-      style={{
-        padding: "10px",
-        width: "100vw",
+
+      <Form style={{
+        padding:"10px",
+        width: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-      }}
-    >
-      <Form>
+      }}>
         <Form.Group
           style={{
             // width: "100vw",
@@ -24,7 +22,7 @@ const InputForm = () => {
           className="mb-3 d-flex"
           controlId="exampleForm.ControlInput1"
         >
-          <Form.Label
+          {/* <Form.Label
             style={{
               display: "flex",
               justifyContent: "center",
@@ -32,15 +30,14 @@ const InputForm = () => {
             }}
           >
             Todo
-          </Form.Label>
+          </Form.Label> */}
 
-          <Form.Control type="email" placeholder="purchase toys" />
+          <Form.Control style={{width:"500px"}} type="text" placeholder="purchase toys" />
           <button class="btn btn-primary" type="submit">
-            Button
+            Add
           </button>
         </Form.Group>
       </Form>
-    </div>
   );
 };
 
