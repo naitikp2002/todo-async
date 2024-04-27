@@ -4,6 +4,7 @@ import { ImCross, ImCheckmark } from "react-icons/im";
 import { FaPen } from "react-icons/fa";
 import ListGroup from "react-bootstrap/ListGroup";
 import Example from "./Modal";
+import Devider from "./Devider";
 const ListItem = ({ todos, setTodos }) => {
   const [todo, setTodo] = useState(null);
   const [editedTask, setEditedTask] = useState(null);
@@ -17,6 +18,13 @@ const ListItem = ({ todos, setTodos }) => {
     handleShow();
     setTodo(todo);
   };
+  const handleStatus=(todo)=>{
+    setTodos((prevTodos) =>
+        prevTodos.map((td) =>
+          td.id === todo.id ? { ...td, isCompleted: true } : td
+        )
+      );
+  }
   const handleUpdateAfterEdit = () => {
     if (editedTask) {
       setTodos((prevTodos) =>
@@ -42,13 +50,14 @@ const ListItem = ({ todos, setTodos }) => {
         handleClose={handleClose}
         handleShow={handleShow}
       />
+      
       <ListGroup
         as="ol"
         numbered
         style={{ minWidth: "500px" }}
         className="list-group"
       >
-        {todos.map((todo) => (
+        {todos?.map((todo) => (
           <ListGroup.Item as="li">
             {todo.task}
             <div
@@ -67,13 +76,14 @@ const ListItem = ({ todos, setTodos }) => {
               <Button variant="secondary" onClick={(e) => handleUpdate(todo)}>
                 <FaPen />
               </Button>
-              <Button variant="success">
+              <Button variant="success" onClick={(e) => handleStatus(todo)}>
                 <ImCheckmark />
               </Button>
             </div>
           </ListGroup.Item>
         ))}
       </ListGroup>
+      
     </>
   );
 };
