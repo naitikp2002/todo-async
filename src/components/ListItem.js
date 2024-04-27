@@ -1,26 +1,31 @@
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { ImCross, ImCheckmark } from "react-icons/im";
-import { FaCheck } from "react-icons/fa";
-import { AiFillEdit } from "react-icons/ai";
 import { FaPen } from "react-icons/fa";
 import ListGroup from "react-bootstrap/ListGroup";
 import Example from "./Modal";
 const ListItem = ({ todos, setTodos }) => {
-  const [editedTask,setEditedTask]= useState(null);
+  const [todo, setTodo] = useState(null);
+  const [editedTask, setEditedTask] = useState(null);
+  const [endEditedTask, setEndEditedTask] = useState(null);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleUpdate =(todo) => {
+  const handleUpdate = (todo) => {
+    setEditedTask(todo.task);
     handleShow();
-    // setTodos();
-    if (editedTask && todo.task !== editedTask) {
-        setTodos((prevTodos) =>
-          prevTodos.map((td) =>
-            td.id === todo.id ? { ...td, task: editedTask } : td
-          )
-        );
+    setTodo(todo);
+  };
+  const handleUpdateAfterEdit = () => {
+    if (endEditedTask) {
+      setTodos((prevTodos) =>
+        prevTodos.map((td) =>
+          td.id === todo.id ? { ...td, task: endEditedTask } : td
+        )
+      );
+      setEndEditedTask(null);
+      // setEditedTask(null);
     }
   };
   const handleDelete = (id) => {
@@ -28,7 +33,15 @@ const ListItem = ({ todos, setTodos }) => {
   };
   return (
     <>
-      <Example editedTask={editedTask} setEditedTask={setEditedTask} show={show} setShow={setShow} handleClose={handleClose} handleShow={handleShow}/>
+      <Example
+        handleUpdateAfterEdit={handleUpdateAfterEdit}
+        editedTask={editedTask}
+        setEditedTask={setEditedTask}
+        show={show}
+        setEndEditedTask={setEndEditedTask}
+        handleClose={handleClose}
+        handleShow={handleShow}
+      />
       <ListGroup
         as="ol"
         numbered
@@ -51,10 +64,7 @@ const ListItem = ({ todos, setTodos }) => {
               <Button variant="danger" onClick={(e) => handleDelete(todo.id)}>
                 <ImCross />
               </Button>
-              <Button
-                variant="secondary"
-                onClick={(e) => handleUpdate(todo)}
-              >
+              <Button variant="secondary" onClick={(e) => handleUpdate(todo)}>
                 <FaPen />
               </Button>
               <Button variant="success">

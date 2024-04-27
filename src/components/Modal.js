@@ -1,14 +1,24 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
-function Example({editedTask,setEditedTask,show,setShow, handleClose,handleShow} ) {
-    const handleUpdate=(e) => {
-        e.preventDefault();
-        setEditedTask(editedTask)
-        handleShow();
-    }
+function Example({
+  editedTask,
+  setEditedTask,
+  show,
+  handleUpdateAfterEdit,
+  setEndEditedTask,
+  handleClose,
+  handleShow,
+}) {
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    setEndEditedTask(editedTask);
+    handleUpdateAfterEdit();
+    setEditedTask(null);
+    handleClose();
+  };
 
   return (
     <>
@@ -24,7 +34,9 @@ function Example({editedTask,setEditedTask,show,setShow, handleClose,handleShow}
                 type="text"
                 placeholder="purchase Toys"
                 value={editedTask}
-                onChange={(event) => {setEditedTask(event.target.value)}}
+                onChange={(event) => {
+                  setEditedTask(event.target.value);
+                }}
                 // autoFocus
               />
             </Form.Group>
