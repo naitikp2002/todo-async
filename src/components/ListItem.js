@@ -7,7 +7,7 @@ import Example from "./Modal";
 const ListItem = ({ todos, setTodos }) => {
   const [todo, setTodo] = useState(null);
   const [editedTask, setEditedTask] = useState(null);
-  const [endEditedTask, setEndEditedTask] = useState(null);
+  // const [endEditedTask, setEndEditedTask] = useState(null);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,13 +18,13 @@ const ListItem = ({ todos, setTodos }) => {
     setTodo(todo);
   };
   const handleUpdateAfterEdit = () => {
-    if (endEditedTask) {
+    if (editedTask) {
       setTodos((prevTodos) =>
         prevTodos.map((td) =>
-          td.id === todo.id ? { ...td, task: endEditedTask } : td
+          td.id === todo.id ? { ...td, task: editedTask } : td
         )
       );
-      setEndEditedTask(null);
+      setEditedTask(null);
       // setEditedTask(null);
     }
   };
@@ -38,7 +38,7 @@ const ListItem = ({ todos, setTodos }) => {
         editedTask={editedTask}
         setEditedTask={setEditedTask}
         show={show}
-        setEndEditedTask={setEndEditedTask}
+        // setEndEditedTask={setEndEditedTask}
         handleClose={handleClose}
         handleShow={handleShow}
       />

@@ -8,13 +8,13 @@ function Example({
   setEditedTask,
   show,
   handleUpdateAfterEdit,
-  setEndEditedTask,
+  // setEndEditedTask,
   handleClose,
   handleShow,
 }) {
   const handleUpdate = (e) => {
     e.preventDefault();
-    setEndEditedTask(editedTask);
+    setEditedTask(editedTask);
     handleUpdateAfterEdit();
     setEditedTask(null);
     handleClose();
@@ -27,7 +27,7 @@ function Example({
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={(e) => e.preventDefault()}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Edit Todo</Form.Label>
               <Form.Control
@@ -37,7 +37,7 @@ function Example({
                 onChange={(event) => {
                   setEditedTask(event.target.value);
                 }}
-                // autoFocus
+                autoFocus
               />
             </Form.Group>
           </Form>
