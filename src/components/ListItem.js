@@ -4,11 +4,9 @@ import { ImCross, ImCheckmark } from "react-icons/im";
 import { FaPen } from "react-icons/fa";
 import ListGroup from "react-bootstrap/ListGroup";
 import Example from "./Modal";
-import Devider from "./Devider";
-const ListItem = ({ todos, setTodos }) => {
+const ListItem = ({ todos, setTodos,handleDelete }) => {
   const [todo, setTodo] = useState(null);
   const [editedTask, setEditedTask] = useState(null);
-  // const [endEditedTask, setEndEditedTask] = useState(null);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -35,9 +33,6 @@ const ListItem = ({ todos, setTodos }) => {
       setEditedTask(null);
       // setEditedTask(null);
     }
-  };
-  const handleDelete = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
   };
   return (
     <>
