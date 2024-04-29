@@ -3,16 +3,18 @@ import Tabs from "react-bootstrap/Tabs";
 import ListItem from "./ListItem";
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+import axios from "axios";
 function JustifiedExample({ todos, setTodos }) {
   const [pendingTodos, setPendingTodos] = useState(null);
   const [completedTodos, setCompletedTodos] = useState(null);
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
+    await axios.delete(`http://localhost:3002/todos/${id}`);
     setTodos(todos.filter((todo) => todo.id !== id));
   };
   useEffect(() => {
     setCompletedTodos(todos.filter((todo) => todo.isCompleted === true));
     setPendingTodos(todos.filter((todo) => todo.isCompleted === false));
-  }, [pendingTodos, completedTodos, todos]);
+  }, [todos]);
 
   return (
     <div>

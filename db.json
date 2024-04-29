@@ -1,10 +1,24 @@
 {
-    "todos": [
-      { "id": "1", "task": "vegitables", "isCompleted": false },
-      { "id": "2", "task": "groceries", "isCompleted": true },
-      { "id": "3", "task": "groceries", "isCompleted": false },
-      { "id": "4", "task": "groceries", "isCompleted": true }
-    ]
-  }
-
-  
+  "todos": [
+    {
+      "id": "ba0b569b-65bc-4615-8a7e-6757a5cde9ef",
+      "task": "Naitik patel",
+      "isCompleted": true
+    },
+    {
+      "id": "651032f2-d2d8-4e45-99d2-88e7aefe519c",
+      "task": "Harshil Patel",
+      "isCompleted": false
+    },
+    {
+      "id": "74242c36-4a53-410b-813a-f62530fa99dc",
+      "task": "Ayush",
+      "isCompleted": true
+    },
+    {
+      "id": "cfcb19cb-0d3e-4894-9989-1e4137b1de19",
+      "task": "Darsh",
+      "isCompleted": false
+    }
+  ]
+}

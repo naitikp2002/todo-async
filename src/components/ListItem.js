@@ -4,7 +4,8 @@ import { ImCross, ImCheckmark } from "react-icons/im";
 import { FaPen } from "react-icons/fa";
 import ListGroup from "react-bootstrap/ListGroup";
 import Example from "./Modal";
-const ListItem = ({ todos, setTodos,handleDelete }) => {
+import axios from "axios";
+const ListItem = ({ todos, setTodos, handleDelete }) => {
   const [todo, setTodo] = useState(null);
   const [editedTask, setEditedTask] = useState(null);
   const [show, setShow] = useState(false);
@@ -16,21 +17,29 @@ const ListItem = ({ todos, setTodos,handleDelete }) => {
     handleShow();
     setTodo(todo);
   };
-  const handleStatus=(todo)=>{
+  const handleStatus = async (todo) => {
+    await axios.put(`http://localhost:3002/todos/${todo.id}`, {
+      ...todo,
+      isCompleted: true,
+    });
     setTodos((prevTodos) =>
-        prevTodos.map((td) =>
-          td.id === todo.id ? { ...td, isCompleted: true } : td
-        )
-      );
-  }
-  const handleUpdateAfterEdit = () => {
+      prevTodos.map((td) =>
+        td.id === todo.id ? { ...td, isCompleted: true } : td
+      )
+    );
+  };
+  const handleUpdateAfterEdit = async () => {
+    await axios.put(`http://localhost:3002/todos/${todo.id}`, {
+      ...todo,
+      task: editedTask,
+    });
     if (editedTask) {
       setTodos((prevTodos) =>
-        prevTodos.map((td) =>
-          td.id === todo.id ? { ...td, task: editedTask } : td
-        )
-      );
-      setEditedTask(null);
+      prevTodos.map((td) =>
+      td.id === todo.id ? { ...td, task: editedTask } : td
+    )
+  );
+  setEditedTask(null);
       // setEditedTask(null);
     }
   };
@@ -45,7 +54,7 @@ const ListItem = ({ todos, setTodos,handleDelete }) => {
         handleClose={handleClose}
         handleShow={handleShow}
       />
-      
+
       <ListGroup
         as="ol"
         numbered
@@ -53,7 +62,7 @@ const ListItem = ({ todos, setTodos,handleDelete }) => {
         className="list-group"
       >
         {todos?.map((todo) => (
-          <ListGroup.Item as="li">
+          <ListGroup.Item as="li" key={todo.id}>
             {todo.task}
             <div
               style={{
@@ -71,14 +80,13 @@ const ListItem = ({ todos, setTodos,handleDelete }) => {
               <Button variant="secondary" onClick={(e) => handleUpdate(todo)}>
                 <FaPen />
               </Button>
-              <Button variant="success" onClick={(e) => handleStatus(todo)}>
+              {!todo.isCompleted && <Button variant="success" onClick={(e) => handleStatus(todo)}>
                 <ImCheckmark />
-              </Button>
+              </Button>}
             </div>
           </ListGroup.Item>
         ))}
       </ListGroup>
-      
     </>
   );
 };

@@ -2,12 +2,13 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import { v4 as uuidv4 } from "uuid";
 import { useRef } from "react";
+import axios from "axios"
 const InputForm = ({ todos, setTodos }) => {
   const inputRef = useRef(null);
   // const handleChange=(e) => {
   //   setTask(e.target.value)
   // }
-  const handlecClick = (e) => {
+  const handlecClick = async (e) => {
     e.preventDefault();
     const inputText = inputRef.current.value.trim();
 
@@ -15,11 +16,13 @@ const InputForm = ({ todos, setTodos }) => {
       if (inputText.length === 0) {
         throw new Error("Todo text cannot be empty");
       }
-
+      const response = await axios.post('http://localhost:3002/todos', { id: uuidv4(), task: inputText, isCompleted: false });
+        // setTodos([...todos, response.data]);
+        console.log(response.data)
       setTodos((prevTodos) => {
         return [
           ...prevTodos,
-          { id: uuidv4(), task: inputText, isCompleted: false },
+          response.data,
         ];
       });
     } catch (error) {

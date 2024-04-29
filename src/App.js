@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Lists from "./components/Lists.js";
 import { useState,useEffect } from "react";
 import axios from "axios"
-import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [todos,setTodos]= useState([])
   useEffect(() => {
