@@ -2,11 +2,11 @@ import React from "react";
 import ListItem from "./ListItem";
 import JustifiedExample from "./Devider";
 import { useState } from "react";
-const Lists = ({ todos, setTodos }) => {
+const Lists = () => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <JustifiedExample todos={todos} setTodos={setTodos} />
+        <JustifiedExample/>
       </div>
       <div
         style={{

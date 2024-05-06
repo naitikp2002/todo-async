@@ -5,7 +5,12 @@ import { FaPen } from "react-icons/fa";
 import ListGroup from "react-bootstrap/ListGroup";
 import Example from "./Modal";
 import axios from "axios";
-const ListItem = ({ todos, setTodos, handleDelete }) => {
+import completedTodo, { removeTodo } from "../store/todoSlice"
+
+import { useSelector, useDispatch } from 'react-redux'
+const ListItem = ({ todos }) => {
+  const dispatch = useDispatch();
+  const todoItems = useSelector((state) => state.todos)
   const [todo, setTodo] = useState(null);
   const [editedTask, setEditedTask] = useState(null);
   const [show, setShow] = useState(false);
@@ -17,35 +22,31 @@ const ListItem = ({ todos, setTodos, handleDelete }) => {
     handleShow();
     setTodo(todo);
   };
-  const handleStatus = async (todo) => {
-    await axios.put(`http://localhost:3002/todos/${todo.id}`, {
-      ...todo,
-      isCompleted: true,
-    });
-    setTodos((prevTodos) =>
-      prevTodos.map((td) =>
-        td.id === todo.id ? { ...td, isCompleted: true } : td
-      )
-    );
+  const handleStatus = (todo) => {
+    // await axios.put(`http://localhost:3002/todos/${todo.id}`, {
+    //   ...todo,
+    //   isCompleted: true,
+    // });
+    dispatch(completedTodo(todo))
   };
-  const handleUpdateAfterEdit = async () => {
-    await axios.put(`http://localhost:3002/todos/${todo.id}`, {
-      ...todo,
-      task: editedTask,
-    });
-    if (editedTask) {
-      setTodos((prevTodos) =>
-      prevTodos.map((td) =>
-      td.id === todo.id ? { ...td, task: editedTask } : td
-    )
-  );
-  setEditedTask(null);
-      // setEditedTask(null);
-    }
-  };
+  // const handleUpdateAfterEdit = async () => {
+  //   await axios.put(`http://localhost:3002/todos/${todo.id}`, {
+  //     ...todo,
+  //     task: editedTask,
+  //   });
+  //   if (editedTask) {
+  //     setTodos((prevTodos) =>
+  //     prevTodos.map((td) =>
+  //     td.id === todo.id ? { ...td, task: editedTask } : td
+  //   )
+  // );
+  // setEditedTask(null);
+  //     // setEditedTask(null);
+  //   }
+  // };
   return (
     <>
-      <Example
+      {/* <Example
         handleUpdateAfterEdit={handleUpdateAfterEdit}
         editedTask={editedTask}
         setEditedTask={setEditedTask}
@@ -53,7 +54,7 @@ const ListItem = ({ todos, setTodos, handleDelete }) => {
         // setEndEditedTask={setEndEditedTask}
         handleClose={handleClose}
         handleShow={handleShow}
-      />
+      /> */}
 
       <ListGroup
         as="ol"
@@ -74,7 +75,7 @@ const ListItem = ({ todos, setTodos, handleDelete }) => {
                 marginLeft: "10px",
               }}
             >
-              <Button variant="danger" onClick={(e) => handleDelete(todo.id)}>
+              <Button variant="danger" onClick={(e) => dispatch(removeTodo(todo.id))}>
                 <ImCross />
               </Button>
               <Button variant="secondary" onClick={(e) => handleUpdate(todo)}>
