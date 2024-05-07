@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addTodo } from "../store/todoSlice";
 
 const InputForm = () => {
-  const todoItems = useSelector((state) => state.todos)
+  const todoItems = useSelector((state) => state.todos.todos)
   const dispatch = useDispatch()
   const inputRef = useRef(null);
   // const handleChange=(e) => {

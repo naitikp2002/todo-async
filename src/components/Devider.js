@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { removeTodo } from "../store/todoSlice";
 function JustifiedExample() {
   const dispatch = useDispatch();
-  const todoItems = useSelector((state) => state.todos.items);
+  const todoItems = useSelector((state) => state.todos.todos);
   const [pendingTodos, setPendingTodos] = useState(null);
   const [completedTodos, setCompletedTodos] = useState(null);
 

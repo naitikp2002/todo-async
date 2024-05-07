@@ -5,7 +5,7 @@ import { FaPen } from "react-icons/fa";
 import ListGroup from "react-bootstrap/ListGroup";
 import Example from "./Modal";
 import axios from "axios";
-import completedTodo, { removeTodo } from "../store/todoSlice"
+import {completedTodo, removeTodo } from "../store/todoSlice"
 
 import { useSelector, useDispatch } from 'react-redux'
 const ListItem = ({ todos }) => {
