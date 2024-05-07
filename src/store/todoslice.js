@@ -24,6 +24,10 @@ export const todoSlice = createSlice({
   name: "todolist",
   initialState,
   reducers: {
+    getTodos: (state, action) =>{
+      state.todos= action.payload
+    }
+    ,
     completedTodo: (state, action) => {
       state.todos = state.todos.map((td) =>
         td.id === action.payload.id ? { ...td, isCompleted: true } : td
@@ -47,7 +51,7 @@ export const todoSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { completedTodo, addTodo, updateTodo, removeTodo } =
+export const { getTodos,completedTodo, addTodo, updateTodo, removeTodo } =
   todoSlice.actions;
 
 export default todoSlice.reducer;

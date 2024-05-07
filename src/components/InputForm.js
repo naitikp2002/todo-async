@@ -13,26 +13,20 @@ const InputForm = () => {
   // const handleChange=(e) => {
   //   setTask(e.target.value)
   // }
-  const handlecClick = (e) => {
+  const handlecClick = async (e) => {
     e.preventDefault();
     const inputText = inputRef.current.value.trim();
     dispatch(addTodo({ id: uuidv4(), task: inputText, isCompleted: false }))
-    // try {
-      //   if (inputText.length === 0) {
-        //     throw new Error("Todo text cannot be empty");
-        //   }
-        //   const response = await axios.post('http://localhost:3002/todos', { id: uuidv4(), task: inputText, isCompleted: false });
-        //     // setTodos([...todos, response.data]);
-    //     console.log(response.data)
-    //   setTodos((prevTodos) => {
-      //     return [
-    //       ...prevTodos,
-    //       response.data,
-    //     ];
-    //   });
-    // } catch (error) {
-      //   console.error(error.message);
-      // }
+    try {
+        if (inputText.length === 0) {
+            throw new Error("Todo text cannot be empty");
+          }
+          const response = await axios.post('http://localhost:3002/todos', { id: uuidv4(), task: inputText, isCompleted: false });
+            // setTodos([...todos, response.data]);
+        console.log(response.data)
+    } catch (error) {
+        console.error(error.message);
+      }
       inputRef.current.value = '';
     };
   console.log(todoItems);
