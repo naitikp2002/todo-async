@@ -2,21 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   todos: [
-    {
-      id: "651032f2-d2d8-4e45-99d2-88e7aefe519c",
-      task: "Harshil Patel",
-      isCompleted: false,
-    },
-    {
-      id: "74242c36-4a53-410b-813a-f62530fa99dc",
-      task: "Ayush Prajapati",
-      isCompleted: true,
-    },
-    {
-      id: "cfcb19cb-0d3e-4894-9989-1e4137b1de19",
-      task: "Darsh Shah",
-      isCompleted: true,
-    },
   ],
 };
 

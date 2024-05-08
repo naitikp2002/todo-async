@@ -12,9 +12,8 @@ function JustifiedExample() {
   const [pendingTodos, setPendingTodos] = useState(null);
   const [completedTodos, setCompletedTodos] = useState(null);
 
-  const handleDelete = (id) => {
-    // await axios.delete(`http://localhost:3002/todos/${id}`);
-    // setTodos(todos.filter((todo) => todo.id !== id));
+  const handleDelete = async (id) => {
+    await axios.delete(`http://localhost:3002/todos/${id}`);
     dispatch(removeTodo(id));
   };
   useEffect(() => {
@@ -32,10 +31,10 @@ function JustifiedExample() {
         justify
       >
         <Tab eventKey="pending" title="Pending">
-          <ListItem todos={pendingTodos} />
+          <ListItem todos={pendingTodos} handleDelete={handleDelete}/>
         </Tab>
         <Tab eventKey="completed" title="Completed">
-          <ListItem todos={completedTodos} />
+          <ListItem todos={completedTodos} handleDelete={handleDelete}/>
         </Tab>
       </Tabs>
     </div>

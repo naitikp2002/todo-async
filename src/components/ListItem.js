@@ -8,7 +8,7 @@ import axios from "axios";
 import { completedTodo, removeTodo, updateTodo } from "../store/todoSlice";
 
 import { useSelector, useDispatch } from "react-redux";
-const ListItem = ({ todos }) => {
+const ListItem = ({ todos,handleDelete }) => {
   const dispatch = useDispatch();
   const todoItems = useSelector((state) => state.todos);
   const [todo, setTodo] = useState(null);
@@ -73,7 +73,7 @@ const ListItem = ({ todos }) => {
             >
               <Button
                 variant="danger"
-                onClick={(e) => dispatch(removeTodo(todo.id))}
+                onClick={(e) => handleDelete(todo.id)}
               >
                 <ImCross />
               </Button>

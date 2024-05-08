@@ -1,23 +1,18 @@
 {
   "todos": [
     {
-      "id": "651032f2-d2d8-4e45-99d2-88e7aefe519c",
-      "task": "Harshil ",
-      "isCompleted": true
-    },
-    {
-      "id": "74242c36-4a53-410b-813a-f62530fa99dc",
-      "task": "Ayush Prajapati",
-      "isCompleted": true
-    },
-    {
-      "id": "cfcb19cb-0d3e-4894-9989-1e4137b1de19",
+      "id": "508ca3f9-e652-4205-b653-c84b0ab71396",
       "task": "Darsh Shah",
       "isCompleted": true
     },
     {
-      "id": "067a7941-0a2a-4c97-8c8e-131896ff6d25",
-      "task": "Naitik Patel",
+      "id": "22c14453-2390-42c0-9663-12c652537986",
+      "task": "Kartik Patel",
+      "isCompleted": true
+    },
+    {
+      "id": "bba5cb8e-d76a-4e48-8641-1b41582a3562",
+      "task": "Kartik Patel",
       "isCompleted": false
     }
   ]

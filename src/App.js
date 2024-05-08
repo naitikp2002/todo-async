@@ -14,7 +14,7 @@ function App() {
   // const [todos,setTodos]= useState([])
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [dispatch]);
 
   const fetchTasks = async () => {
     try {
