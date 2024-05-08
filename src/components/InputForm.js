@@ -2,33 +2,35 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import { v4 as uuidv4 } from "uuid";
 import { useRef } from "react";
-import axios from "axios"
-import { useSelector, useDispatch } from 'react-redux'
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { addTodo } from "../store/todoSlice";
 
 const InputForm = () => {
-  const todoItems = useSelector((state) => state.todos.todos)
-  const dispatch = useDispatch()
+  const todoItems = useSelector((state) => state.todos.todos);
+  const dispatch = useDispatch();
   const inputRef = useRef(null);
-  // const handleChange=(e) => {
-  //   setTask(e.target.value)
-  // }
+  
   const handlecClick = async (e) => {
     e.preventDefault();
     const inputText = inputRef.current.value.trim();
-    dispatch(addTodo({ id: uuidv4(), task: inputText, isCompleted: false }))
+    dispatch(addTodo({ id: uuidv4(), task: inputText, isCompleted: false }));
     try {
-        if (inputText.length === 0) {
-            throw new Error("Todo text cannot be empty");
-          }
-          const response = await axios.post('http://localhost:3002/todos', { id: uuidv4(), task: inputText, isCompleted: false });
-            // setTodos([...todos, response.data]);
-        console.log(response.data)
-    } catch (error) {
-        console.error(error.message);
+      if (inputText.length === 0) {
+        throw new Error("Todo text cannot be empty");
       }
-      inputRef.current.value = '';
-    };
+      const response = await axios.post("http://localhost:3002/todos", {
+        id: uuidv4(),
+        task: inputText,
+        isCompleted: false,
+      });
+      // setTodos([...todos, response.data]);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error.message);
+    }
+    inputRef.current.value = "";
+  };
   console.log(todoItems);
   return (
     <Form
@@ -51,8 +53,8 @@ const InputForm = () => {
         controlId="exampleForm.ControlInput1"
       >
         <Form.Control
-        ref={inputRef}
-        // onChange={handleChange}
+          ref={inputRef}
+          // onChange={handleChange}
           style={{ width: "500px" }}
           type="text"
           placeholder="purchase toys"

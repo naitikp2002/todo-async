@@ -20,7 +20,7 @@ function App() {
     try {
       const response = await axios.get('http://localhost:3002/todos');
       console.log(response);
-      dispatch(getTodos(response.data))
+      dispatch(getTodos(response.data ))
     } catch (error) {
       console.error('Error fetching tasks:', error);
     }

@@ -22,18 +22,18 @@ const ListItem = ({ todos }) => {
     handleShow();
     setTodo(todo);
   };
-  const handleStatus = (todo) => {
-    // await axios.put(`http://localhost:3002/todos/${todo.id}`, {
-    //   ...todo,
-    //   isCompleted: true,
-    // });
+  const handleStatus = async (todo) => {
+    await axios.put(`http://localhost:3002/todos/${todo.id}`, {
+      ...todo,
+      isCompleted: true,
+    });
     dispatch(completedTodo(todo));
   };
-  const handleUpdateAfterEdit = () => {
-    // await axios.put(`http://localhost:3002/todos/${todo.id}`, {
-    //   ...todo,
-    //   task: editedTask,
-    // });
+  const handleUpdateAfterEdit = async () => {
+    await axios.put(`http://localhost:3002/todos/${todo.id}`, {
+      ...todo,
+      task: editedTask,
+    });
     if (editedTask) {
       dispatch(updateTodo({todo,editedTask}));
       setEditedTask(null);
